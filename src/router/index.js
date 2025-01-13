@@ -1,0 +1,44 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/manager/Home.vue'
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      redirect: '/manager/home',
+    },
+    {
+      path: '/login',
+      component:()=>import('../views/Login.vue'),
+    },
+    {
+      path: '/register',
+      component:()=>import('../views/Register.vue'),
+    },
+    {
+      path: '/manager',
+      component:()=>import('../views/Manager.vue'),
+      children:[
+          {path:'home',meta:{ name:'首页' },component:()=>import('../views/manager/Home.vue')},
+          {path:'user',meta:{ name:'用户信息' },component:()=>import('../views/manager/User.vue')},
+          {path:'person',meta:{ name:'个人信息' },component:()=>import('../views/manager/Person.vue')},
+          {path:'password',meta:{ name:'修改密码' },component:()=>import('../views/manager/Password.vue')},
+          {path:'logs',meta:{ name:'系统日志' },component:()=>import('../views/manager/Logs.vue')},
+          
+      ]
+    },
+    {
+      path: '/404',
+      component: () => import('../views/404.vue'),
+    },
+      //匹配未定义的路由
+    {
+      path: '/:pathMatch(.*)',
+      redirect: '/404',
+      hidden: true
+    }
+  ],
+})
+
+export default router
