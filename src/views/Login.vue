@@ -37,6 +37,7 @@ import { ElMessage } from "element-plus";
 
 const data = reactive({
   form: {
+    uuid: "",
     username: "",
     password: "",
     code: ""
@@ -52,9 +53,21 @@ const data = reactive({
       { required: true, message: "请输入验证码", trigger: "blur" }
     ]
   },
+  captchaImg: ''
 });
 
 const formRef = ref();
+
+const getCaptchaImg = () => {
+  request.get('/captcha').then(res => {
+    if(res.code == '200') {
+      data.form.uuid = res.data.uuid
+      data.captchaImg = "data:image/gif;base64," + res.data.img
+    }else {
+      ElMessage.error(res.msg)
+    }
+  })
+}
 
 const login = () =>{
   formRef.value.validate((valid) => {
@@ -68,6 +81,7 @@ const login = () =>{
           location.href = '/manager/home'
         }, 500)
         } else {
+          getCaptchaImg()
           ElMessage.error(res.msg)
         }
       })
@@ -77,7 +91,7 @@ const login = () =>{
   })
 }
 
-
+getCaptchaImg()
 </script>
 
 <style scoped>

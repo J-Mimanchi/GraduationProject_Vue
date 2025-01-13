@@ -51,8 +51,12 @@
               <el-icon><UserFilled /></el-icon>
               <span>信息管理</span>
             </template>
+            <el-menu-item index="/manager/carousel" v-if="data.user.role === 'ADMIN'">广告信息</el-menu-item>
+            <el-menu-item index="/manager/category" v-if="data.user.role === 'ADMIN'">商品分类</el-menu-item>
+            <el-menu-item index="/manager/goods" v-if="data.user.role === 'ADMIN'">商品信息</el-menu-item>
             <el-menu-item index="/manager/logs" v-if="data.user.role === 'ADMIN'">系统日志</el-menu-item>
             <el-menu-item index="/manager/user" v-if="data.user.role === 'ADMIN'">用户信息</el-menu-item>
+
           </el-sub-menu>
         </el-menu>
       </div>
