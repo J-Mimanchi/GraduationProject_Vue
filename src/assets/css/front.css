@@ -3,7 +3,7 @@
     height: 60px;
     line-height: 60px;
     border-bottom: 1px solid #eee;
-    background: #fff;
+    background: #b36fef;
 }
 .front-header-left {
     height: 60px;
@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     padding-left: 30px;
-    background-color: #e00b0b;
+    background-color: #9f8be3;
 }
 .front-header-left img, .front-header-dropdown img {
     width: 40px;
@@ -36,7 +36,7 @@
     padding-right: 20px;
     text-align: right;
     outline: none;
-    background-color: #e00b0b !important;
+    background-color: #9f8be3 !important;
 }
 .front-header-dropdown {
     height: 60px;
@@ -45,6 +45,8 @@
     justify-content: right;
     outline: none !important;
 }
+
+
 .el-dropdown-menu {
     width: 100px !important;
     text-align: center !important;
@@ -53,16 +55,16 @@
 .el-menu.el-menu--horizontal {
     border: none !important;
     height: 60px;
-    background-color: #e00b0b !important;
+    background-color: #9f8be3 !important;
 }
 .el-menu-item {
     color: white !important;
     font-weight: 550;
-    background-color: #e00b0b !important;
+    background-color: #9f8be3 !important;
     border: none !important;
 }
 .el-menu-item.is-active {
-    background-color: #c70909 !important;
+    background-color: #9f8be3 !important;
     color: white !important;
     font-weight: 550;
     border: none !important;

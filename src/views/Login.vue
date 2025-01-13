@@ -78,7 +78,11 @@ const login = () =>{
           localStorage.setItem('myshop-user', JSON.stringify(res.data))
           ElMessage.success('登录成功')
         setTimeout(() => {
-          location.href = '/manager/home'
+          if(res.data.role == 'ADMIN') {
+            location.href = '/manager/home'
+          } else {
+            location.href = '/front/home'
+          }
         }, 500)
         } else {
           getCaptchaImg()
