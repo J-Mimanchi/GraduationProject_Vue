@@ -8,6 +8,8 @@
     </el-carousel>
     <!--秒杀和团购-->
     <div style="margin-top: 20px; height: 350px">
+
+
       <el-row :gutter="10">
        <el-col :span="8">
          <div style="background-color: #faf5f5; height: 350px; border-radius: 10px; padding: 10px 15px;">
@@ -29,6 +31,8 @@
            </div>
          </div>
        </el-col>
+
+
         <el-col :span="16">
           <div style="background-color: #faf7f0; height: 350px; border-radius: 10px; padding: 10px 15px;">
             <div style="height: 30px; line-height: 30px; font-size: 16px; font-weight: bold;">🔥热门团购</div>
@@ -215,7 +219,7 @@ const groupDown = () => {
 loadCarouse()
 loadGoods()
 loadFlash()
-// loadGroup(1)
+loadGroup(1)
 
 </script>
 

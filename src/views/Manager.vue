@@ -1,11 +1,11 @@
 <template>
   <div class="manager-container">
-    <!-- 头部开始 -->
+    <!--  头部开始  -->
     <div class="manager-header">
       <div class="manager-header-left">
         <!-- 标题和Logo -->
         <img src="@/assets/imgs/logo.jpg" alt="">
-        <div class="title">商城管理后台</div>
+        <div class="title">MyShop</div>
       </div>
       <div class="manager-header-center">
         <!-- 面包屑 -->
@@ -20,7 +20,7 @@
           <div style="padding-right: 20px; display: flex; align-items: center;">
             <img v-if="data.user.avatar" :src="data.user?.avatar" alt="" style="width: 40px; height: 40px; display: block; border-radius: 50%">
             <img v-else src="@/assets/imgs/avatar.png" alt="" style="width: 40px; height: 40px; display: block; border-radius: 50%">
-            <span style="margin-left: 5px;color:white">{{ data.user?.name }}</span>
+            <span style="margin-left: 5px; color: white">{{ data.user?.name }}</span>
           </div>
           <template #dropdown>
             <el-dropdown-menu>
@@ -32,16 +32,17 @@
         </el-dropdown>
       </div>
     </div>
-    <!-- 头部结束 -->
+    <!--  头部结束 -->
 
     <!-- 下面区域开始 -->
     <div style="display: flex">
       <div class="manager-main-left">
-        <!-- 菜单区域 -->
+        <!-- 导航菜单区域 -->
         <el-menu
             :default-active="router.currentRoute.value.path"
             :default-openeds="['/manager/home', 'info']"
-            router>
+            router
+        >
           <el-menu-item index="/manager/home">
             <el-icon><home-filled /></el-icon>
             <span>系统首页</span>
@@ -51,22 +52,24 @@
               <el-icon><UserFilled /></el-icon>
               <span>信息管理</span>
             </template>
-            <el-menu-item index="/manager/carousel" v-if="data.user.role === 'ADMIN'">广告信息</el-menu-item>
-            <el-menu-item index="/manager/category" v-if="data.user.role === 'ADMIN'">商品分类</el-menu-item>
-            <el-menu-item index="/manager/goods" v-if="data.user.role === 'ADMIN'">商品信息</el-menu-item>
-            <el-menu-item index="/manager/logs" v-if="data.user.role === 'ADMIN'">系统日志</el-menu-item>
-            <el-menu-item index="/manager/user" v-if="data.user.role === 'ADMIN'">用户信息</el-menu-item>
-
+            <el-menu-item index="/manager/orders">订单信息</el-menu-item>
+            <el-menu-item index="/manager/carousel">广告信息</el-menu-item>
+            <el-menu-item index="/manager/category">商品分类</el-menu-item>
+            <el-menu-item index="/manager/goods">商品信息</el-menu-item>
+            <el-menu-item index="/manager/comment">评价信息</el-menu-item>
+            <el-menu-item index="/manager/logs">系统日志</el-menu-item>
+            <el-menu-item index="/manager/user">用户信息</el-menu-item>
           </el-sub-menu>
         </el-menu>
       </div>
 
       <div class="manager-main-right">
-        <!-- 内容区域 -->
-        <router-view @updateUser="upDateUser"/>
+        <!-- 主体内容区域 -->
+        <RouterView @updateUser="updateUser" />
       </div>
     </div>
     <!-- 下面区域结束 -->
+
   </div>
 </template>
 
@@ -75,19 +78,19 @@ import router from "@/router/index.js";
 import {reactive} from "vue";
 
 const data = reactive({
-  user: JSON.parse(localStorage.getItem('myshop-user') || '{}') 
-});
+  user: JSON.parse(localStorage.getItem('myshop-user') || '{}')
+})
 
 const logout = () => {
-  localStorage.removeItem('myshop-user');
+  localStorage.removeItem('myshop-user')
   location.href = '/login'
 }
-// 更新用户缓存
-const upDateUser = () => {
+
+const updateUser = () => {
+  // 获取最新的缓存数据
   data.user = JSON.parse(localStorage.getItem('myshop-user') || '{}')
 }
 </script>
-
 
 <style scoped>
 @import "@/assets/css/manager.css";
